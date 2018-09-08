@@ -85,8 +85,6 @@ class Store {
 
 	@computed
 	get currentSensor() {
-		// tslint:disable-next-line:no-debugger
-		debugger;
 		return me().sensors.get(me().selectedSensor);
 	}
 }
