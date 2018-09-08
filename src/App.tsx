@@ -1,14 +1,14 @@
 import * as React from 'react';
 import './App.css';
 import UserForm from './components/UserForm';
-import Parking from './parking';
+import Parking from './components/Parking';
 
 class App extends React.Component {	
 	public render() {
     return (
       <div className="App">
-	  	<UserForm />
-		<Parking />
+        <UserForm />
+        <Parking />
       </div>
     );
   }

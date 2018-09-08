@@ -1,17 +1,20 @@
 import { observer } from 'mobx-react';
 import * as React from "react";
-import { store } from './store';
+import { store } from '../store';
+import { Table } from 'react-bootstrap';
+import MapContainer from './MapContainer';
 
-const parking: React.SFC = () => {
+const Parking: React.SFC = () => {
 	const sensors = store.visibleSensorInstances;
 
 	return (
 		<div>
-			<h1>CLICK HERE</h1>
 			<h1>Selected Sensor: {store.selectedSensor}</h1>
 			<br />
 
-			<table>
+			<MapContainer />
+
+			<Table striped={true}>
 				<thead>
 					<tr>
 						<th colSpan={100}>Sensors</th>
@@ -28,9 +31,9 @@ const parking: React.SFC = () => {
 						);
 					})}
 				</tbody>
-			</table>
+			</Table>
 		</div>
 	);
 }
 
-export default observer(parking);
+export default observer(Parking);

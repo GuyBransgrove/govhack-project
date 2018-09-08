@@ -3,3 +3,30 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.userform-container {
+  width: 100vw;
+  margin: 0 auto;
+}
+
+.userform {
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: grey;
+}
+
+.side-pad {
+  padding: 0px 15px 0px 15px;
+}
+
+.internal-form {
+  width: 40%;
+  margin: 0 auto;
+}
+
+.google-map-wrapper {
+  width: 800px;
+  height: 500px;
+  margin: 0 auto;
+}

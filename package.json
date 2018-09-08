@@ -5,6 +5,7 @@
   "dependencies": {
     "@types/react-bootstrap": "^0.32.13",
     "axios": "^0.18.0",
+    "google-maps-react": "^2.0.2",
     "mobx": "^5.1.0",
     "mobx-react": "^5.2.6",
     "react": "^16.5.0",

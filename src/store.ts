@@ -85,7 +85,7 @@ class Store {
 
 	@computed
 	get currentSensor() {
-		return me().sensors.get(me().selectedSensor);
+		return me().sensors.get(me().selectedSensor)!;
 	}
 }
 
