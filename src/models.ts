@@ -1,17 +1,34 @@
-import { observable } from "mobx";
-
 export class SensorInstance {
-	@observable public area: string;
-    @observable public arrivaltime: Date;
-    @observable public betweenstreet1: string;
-    @observable public betweenstreet2: string;
-	@observable public departuretime: Date;
-	@observable public deviceid: string;
-	@observable public durationseconds: string;
-	@observable public inViolation: string;
-	@observable public sideOfStreet: string;
-	@observable public sign: string;
-	@observable public streetid: string;
-	@observable public streetmarker: string;
-	@observable public streetname: string;
+	 public area: string = '';
+     public arrivaltime: Date = new Date();
+     public betweenstreet1: string = '';
+     public betweenstreet2: string = '';
+	 public departuretime: Date = new Date();
+	 public deviceid: string = '';
+	 public durationseconds: string = '';
+	 public inViolation: string = '';
+	 public sideOfStreet: string = '';
+	 public sign: string = '';
+	 public streetid: string = '';
+	 public streetmarker: string = '';
+	 public streetname: string = '';
+}
+
+export class ParkingBay {
+	 public theGeom: string = '';
+	 public meterId: string = '';
+	 public bayId: string = '';
+	 public markerId: string = '';
+	 public lastEdit: string = '';
+	 public rdSegId: string = '';
+	 public rdSegDsc: string = '';
+}
+
+export class ParkingBaySensor {
+	 public bayId: number = 0;
+	 public stMarkerId: string = '';
+	 public status: string = '';
+	 public location: string = '';
+	 public lat: string = '';
+	 public lon: string = '';
 }

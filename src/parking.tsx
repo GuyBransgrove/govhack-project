@@ -2,12 +2,13 @@ import { observer } from 'mobx-react';
 import * as React from "react";
 import { store } from './store';
 
-const parking = () => {
-	const sensors = store.visibleSensors;
+const parking: React.SFC = () => {
+	const sensors = store.visibleSensorInstances;
 
 	return (
-		<div onClick={store.firstLoadSensors}>
+		<div>
 			<h1>CLICK HERE</h1>
+			<h1>Selected Sensor: {store.selectedSensor}</h1>
 			<br />
 
 			<table>
