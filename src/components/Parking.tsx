@@ -5,13 +5,13 @@ import { Table } from 'react-bootstrap';
 import MapContainer from './MapContainer';
 
 const Parking: React.SFC = () => {
-	const sensors = store.visibleSensorInstances;
-
 	return (
 		<div>
 			<h1>Selected Sensor: {store.selectedSensor}</h1>
 			<br />
-
+			<div>
+				selected bay: {JSON.stringify(store.currentBay)}
+			</div>
 			<MapContainer />
 
 			<Table striped={true}>
@@ -21,11 +21,20 @@ const Parking: React.SFC = () => {
 					</tr>
 				</thead>
 				<tbody>
-					{sensors.map((sensor) => {
+					{store.currentResults.map((sensor) => {
 						return(
 							<tr key={`${sensor.deviceid}-${sensor.arrivaltime}`}>
 								<td>
 									{sensor.arrivaltime}
+								</td>
+								<td>
+									{sensor.streetname}
+								</td>
+								<td>
+									{sensor.betweenstreet1}
+								</td>
+								<td>
+									{sensor.betweenstreet2}
 								</td>
 							</tr>
 						);

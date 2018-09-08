@@ -25,7 +25,7 @@ export class ParkingBay {
 }
 
 export class ParkingBaySensor {
-	 public bayId: number = 0;
+	 public bayId: string = '';
 	 public stMarkerId: string = '';
 	 public status: string = '';
 	 public location: string = '';

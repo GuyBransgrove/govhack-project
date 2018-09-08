@@ -4,7 +4,7 @@ import { getSensorInstances, getParkingSensors, getParkingBays } from './api';
 
 class Store {
 	public pageSize: number = 20;
-	@observable public sensorInstances: ObservableMap<string, SensorInstance> = observable.map({});
+	@observable public sensorInstances: ObservableMap<string, SensorInstance[]> = observable.map({});
 	@observable public sensors: ObservableMap<string, ParkingBaySensor> = observable.map({});
 	@observable public parkingBays: ObservableMap<string, ParkingBay> = observable.map({});
 	@observable public sensorPage: number = 0;
@@ -23,8 +23,14 @@ class Store {
 
 		me().sensorInstances.clear();
 
-		typedSensorsInstances.forEach((sensor: any) => {
-			me().sensorInstances.set(sensor.deviceid, sensor);
+		typedSensorsInstances.forEach((sensor) => {
+			const existing = me().sensorInstances.get(sensor.streetmarker);
+			if (existing) {
+				me().sensorInstances.delete(sensor.streetmarker);
+				me().sensorInstances.set(sensor.streetmarker, [...existing, sensor]);
+			} else {
+				me().sensorInstances.set(sensor.streetmarker, [sensor]);
+			}
 		});
 	}
 
@@ -85,7 +91,16 @@ class Store {
 
 	@computed
 	get currentSensor() {
-		return me().sensors.get(me().selectedSensor)!;
+		return me().sensors.get(me().selectedSensor) || new ParkingBaySensor();
+	}
+
+	@computed
+	get currentBay() {
+		return me().parkingBays.get(me().currentSensor.bayId) || new ParkingBay();
+	}
+
+	get currentResults() {
+		return me().sensorInstances.get(me().currentSensor.stMarkerId) || [];
 	}
 }
 
