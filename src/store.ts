@@ -12,19 +12,20 @@ class Store {
 	@observable public selectedToD: string = `${new Date().getHours()}`;
 	@observable public selectedCriteria: string = 'none';
 	@observable public selectedSensor: string = 'none';
+	@observable public loading: boolean = true;
 
 	@action
 	async getSensorIntances() {
-		const sensorInstancesFromApi = await getSensorInstances();
+		const sensorInstancesFromApi = await getSensorInstances(store.selectedSensor);
 		
 		const typedSensorsInstances = sensorInstancesFromApi.map((sensorInstance: any) => {
 			return createFromApi(sensorInstance, new SensorInstance());
-		});
+		}) as SensorInstance[];
 
 		me().sensorInstances.clear();
 
 		typedSensorsInstances.forEach((sensor: any) => {
-			me().sensorInstances.set(sensor.deviceid, sensor);
+			me().sensorInstances.set(sensor.streetmarker, sensor);
 		});
 	}
 
@@ -38,8 +39,10 @@ class Store {
 		me().sensors.clear();
 
 		typedSensors.forEach((sensor) => {
-			me().sensors.set(sensor.bayId.toString(), sensor)
+			me().sensors.set(sensor.stMarkerId, sensor)
 		});
+
+		me().loading = false;
 	}
 
 	@action
@@ -52,7 +55,7 @@ class Store {
 		me().parkingBays.clear();
 
 		typedParkingBays.forEach((parkingBay) => {
-			me().parkingBays.set(parkingBay.bayId.toString(), parkingBay)
+			me().parkingBays.set(parkingBay.markerId, parkingBay)
 		});
 	}
 
@@ -74,13 +77,16 @@ class Store {
 	@action
 	changeSelectedSensor(e: any) {
 		me().selectedSensor = e.target.value;
+
+		me().getSensorIntances();
 	}
 
 	@computed
 	get visibleSensorInstances() {
-		const current = me();
+		// const current = me();
 		return values(store.sensorInstances)
-			.slice(current.sensorPage * current.pageSize, (current.sensorPage * current.pageSize) + current.pageSize) ;
+			// .slice(current.sensorPage * current.pageSize, (current.sensorPage * current.pageSize) + current.pageSize)
+			.filter((sensor) => sensor.streetmarker === store.selectedSensor);
 	}
 
 	@computed

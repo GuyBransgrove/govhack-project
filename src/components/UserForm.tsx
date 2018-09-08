@@ -6,8 +6,9 @@ import { values } from "mobx";
 
 const UserForm: React.SFC = () => {
   return (
+		<div>
     <form>
-      <FormGroup controlId="weekDaySelect">
+      <FormGroup controlId="weekDaySelect" className="FormControlStyle">
         <ControlLabel>Select Day of Week</ControlLabel>
 		<FormControl 
 			value={store.selectedDay} 
@@ -24,7 +25,7 @@ const UserForm: React.SFC = () => {
 		  <option value="saturday">Saturday</option>
         </FormControl>
       </FormGroup>
-	  <FormGroup controlId="timeDaySelect">
+	  <FormGroup controlId="timeDaySelect" className="FormControlStyle">
         <ControlLabel>Time of Day</ControlLabel>
 		<FormControl 
 			value={store.selectedToD} 
@@ -58,7 +59,7 @@ const UserForm: React.SFC = () => {
 		  <option value="23">23:00</option>
         </FormControl>
       </FormGroup>
-	  <FormGroup controlId="criteriaSelect">
+	  <FormGroup controlId="criteriaSelect" className="FormControlStyle">
         <ControlLabel>Criteria</ControlLabel>
 		<FormControl 
 			value={store.selectedCriteria} 
@@ -72,23 +73,23 @@ const UserForm: React.SFC = () => {
 		  <option value="outflow">High Outflow</option>
         </FormControl>
       </FormGroup>
-	  <FormGroup>
+	  <FormGroup controlId="sensorSelect" className="FormControlStyle">
 	  	<ControlLabel>Sensors</ControlLabel>
 		<FormControl 
 			value={store.selectedSensor} 
-			componentClass="select" 
+			componentClass="select"
+			disabled={store.loading}
 			placeholder="Criteria"
 			onChange={store.changeSelectedSensor}
 		>
           <option value="none">None</option>
 		  {values(store.sensors).map((sensor) => {
-			  return(
-				<option key={sensor.bayId} value={sensor.bayId}>{sensor.bayId}</option>
-			  );
+				return(<option key={sensor.bayId} value={sensor.stMarkerId}>{sensor.bayId}</option>)
 		  })}
         </FormControl>
 	  </FormGroup>
     </form>
+		</div>
   );
 };
 

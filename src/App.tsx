@@ -4,11 +4,12 @@ import UserForm from './components/UserForm';
 import Parking from './parking';
 
 class App extends React.Component {	
+
 	public render() {
     return (
       <div className="App">
-	  	<UserForm />
-		<Parking />
+        <UserForm />
+		    <Parking />
       </div>
     );
   }
