@@ -7,11 +7,6 @@ import MapContainer from './MapContainer';
 const Parking: React.SFC = () => {
 	return (
 		<div>
-			<h1>Selected Sensor: {store.selectedSensor}</h1>
-			<br />
-			<div>
-				selected bay: {JSON.stringify(store.currentBay)}
-			</div>
 			<MapContainer />
 
 			<Table striped={true}>

@@ -58,8 +58,21 @@ class Store {
 		me().parkingBays.clear();
 
 		typedParkingBays.forEach((parkingBay) => {
-			me().parkingBays.set(parkingBay.bayId.toString(), parkingBay)
+			if(parkingBay.rdSegDsc.length){
+				me().parkingBays.set(parkingBay.bayId.toString(), parkingBay)
+			} else {
+				if(me().sensors.get(parkingBay.bayId)) {
+					me().sensors.delete(parkingBay.bayId);
+				}
+			}
 		});
+	}
+
+	@action
+	async getData() {
+		await me().getSensors();
+		await me().getParkingBays();
+		await me().getSensorIntances();
 	}
 
 	@action
@@ -105,9 +118,7 @@ class Store {
 }
 
 const store = new Store();
-store.getSensorIntances();
-store.getParkingBays();
-store.getSensors();
+store.getData();
 function me(){
 	return store;
 }
