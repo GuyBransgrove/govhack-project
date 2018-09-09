@@ -83,9 +83,15 @@ const UserForm: React.SFC = () => {
 							onChange={store.changeSelectedSensor}
 						>
 							<option value="none">None</option>
-							{values(store.sensors).map((sensor) => {
+							{values(store.sensors).filter((sensor) => {
+								return store.parkingBays.get(sensor.bayId) && store.parkingBays.get(sensor.bayId)!.rdSegDsc;
+							}).map((sensor) => {
 								return (
-									<option key={sensor.bayId} value={sensor.bayId}>{sensor.bayId}</option>
+									<option key={sensor.bayId} value={sensor.bayId}>
+										{sensor.bayId} - {
+											store.parkingBays.get(sensor.bayId) ? store.parkingBays.get(sensor.bayId)!.rdSegDsc : ''
+										}
+									</option>
 								);
 							})}
 						</FormControl>
