@@ -7,6 +7,8 @@ class App extends React.Component {
 	public render() {
     return (
       <div className="App">
+	  	<div className="App-header-text">Car Park Unknown</div>
+		<header className="App-header" />
         <UserForm />
         <Parking />
       </div>
