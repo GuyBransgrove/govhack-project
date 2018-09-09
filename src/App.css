@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  width: 100vw;
+  width: 100%;
   max-width: 100%;
 }
 
@@ -10,9 +10,18 @@
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
+  height: 60vh;
   padding: 20px;
+  background-image: url("background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+}
+
+.App-header-text {
+	background-color: #222;
+  height: 20px;
+  font-size: 100%;
   color: white;
 }
 
@@ -27,4 +36,8 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.FormControlStyle {
+  width: 200px;
 }

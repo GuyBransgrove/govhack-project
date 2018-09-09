@@ -16,7 +16,7 @@ class Store {
 	@action
 	async getSensorIntances() {
 		const sensorInstancesFromApi = await getSensorInstances();
-		
+
 		const typedSensorsInstances = sensorInstancesFromApi.map((sensorInstance: any) => {
 			return createFromApi(sensorInstance, new SensorInstance());
 		});
@@ -112,6 +112,7 @@ class Store {
 		return me().parkingBays.get(me().currentSensor.bayId) || new ParkingBay();
 	}
 
+	@computed
 	get currentResults() {
 		return me().sensorInstances.get(me().currentSensor.stMarkerId) || [];
 	}
